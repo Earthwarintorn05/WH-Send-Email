@@ -7,7 +7,7 @@
 <script>
   async function sendUid(uid) {
     try {
-      await fetch("https://defaulte3887893c31e4827ab0ab22b90ce97.c1.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/f3313fc45e1441858188e5ccda5eafdf/triggers/manual/paths/invoke/?api-version=1", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbxa7olmSfUbzaAqTiaBw6m-VUu_xiJbrRMkpXQuo9lWxCg5IJTGbIQK5XOpSSFM15MI/exec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -15,6 +15,8 @@
           timestamp: new Date().toISOString() 
         })
       });
+      const data = await response.json();
+      console.log("Response from Google Apps Script:", data);
     } catch (error) {
       console.error("Error sending UID:", error);
     }
