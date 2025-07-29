@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Redirecting...</title>
+<script>
+  async function sendUid(uid) {
+    try {
+      await fetch("https://defaulte3887893c31e4827ab0ab22b90ce97.c1.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/f3313fc45e1441858188e5ccda5eafdf/triggers/manual/paths/invoke/?api-version=1", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          uid: uid, 
+          timestamp: new Date().toISOString() 
+        })
+      });
+    } catch (error) {
+      console.error("Error sending UID:", error);
+    }
+  }
+
+  window.onload = async function () {
+    const params = new URLSearchParams(window.location.search);
+    const uid = params.get("uid");
+
+    if (uid) {
+      await sendUid(uid);
+    }
+
+    setTimeout(() => {
+      window.location.href = "https://www.instagram.com/mosalah/?hl=en";
+    }, 1500);
+  };
+</script>
+</head>
+<body>
+  <p>กำลังพาไปยัง Instagram... กรุณารอสักครู่</p>
+</body>
+</html>
