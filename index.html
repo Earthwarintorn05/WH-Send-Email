@@ -1,25 +1,25 @@
-<script>
-  function sendUid() {
-    const params = new URLSearchParams(window.location.search);
-    const uid = params.get("uid");
-    const timestamp = new Date().toISOString();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Send UID and Redirect Immediately</title>
+  <script>
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      const uid = params.get("uid") || "TEST_UID_123";
+      const timestamp = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Bangkok' });
 
-    if (!uid) {
-      alert("ไม่มี uid ใน URL");
-      return;
-    }
+      const url = `https://script.google.com/macros/s/AKfycbxa7olmSfUbzaAqTiaBw6m-VUu_xiJbrRMkpXQuo9lWxCg5IJTGbIQK5XOpSSFM15MI/exec?uid=${encodeURIComponent(uid)}&timestamp=${encodeURIComponent(timestamp)}`;
 
-    const url = `https://script.google.com/macros/s/YOUR_DEPLOYED_SCRIPT_ID/exec?uid=${encodeURIComponent(uid)}&timestamp=${encodeURIComponent(timestamp)}`;
+      // ส่ง fetch แบบเบื้องหลัง โดยไม่รอ
+      fetch(url).catch(console.error);
 
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        console.log("Response from Apps Script:", data);
-      })
-      .catch(error => {
-        console.error("Error sending UID:", error);
-      });
-  }
-
-  window.onload = sendUid;
-</script>
+      // Redirect ไปทันที (ไม่ต้อง setTimeout ก็ได้)
+      window.location.href = "https://www.google.com";
+    };
+  </script>
+</head>
+<body>
+  <p>กำลังส่งข้อมูล UID และเปลี่ยนหน้า...</p>
+</body>
+</html>
