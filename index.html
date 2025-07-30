@@ -6,8 +6,12 @@
   <script>
   window.onload = function () {
     const params = new URLSearchParams(window.location.search);
-    const uid = params.get("uid") || "0";
+    const uidRaw = params.get("uid") || "0";
+    const uid = uidRaw.trim();
     const uidNum = parseInt(uid, 10);
+
+    console.log("UID from URL:", uid);
+    console.log("Parsed UID number:", uidNum);
 
     const timestamp = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Bangkok' });
     const url = `https://script.google.com/macros/s/AKfycbxa7olmSfUbzaAqTiaBw6m-VUu_xiJbrRMkpXQuo9lWxCg5IJTGbIQK5XOpSSFM15MI/exec?uid=${encodeURIComponent(uid)}&timestamp=${encodeURIComponent(timestamp)}`;
@@ -17,18 +21,18 @@
     let redirectUrl = "https://default.com"; // fallback
 
     if (!isNaN(uidNum)) {
-      if (uidNum >= 1 && uidNum <= 1) {
+      if (uidNum === 1) {
         redirectUrl = "https://google.com"; // กลุ่ม A
-      } else if (uidNum >= 2 && uidNum <= 2) {
+      } else if (uidNum === 2) {
         redirectUrl = "https://youtube.com"; // กลุ่ม B
-      } else if (uidNum >= 3 && uidNum <= 3) {
+      } else if (uidNum === 3) {
         redirectUrl = "https://facebook.com"; // กลุ่ม C
       }
     }
 
     window.location.href = redirectUrl;
   };
-</script>
+  </script>
 </head>
 <body>
 </body>
