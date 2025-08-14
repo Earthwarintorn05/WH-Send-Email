@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Send UID and Redirect Immediately</title>
+  <script>
+  window.onload = function () {
+    const params = new URLSearchParams(window.location.search);
+    const uidRaw = params.get("uid") || "0";
+    const uid = uidRaw.trim();
+
+    console.log("UID from URL:", uid);
+
+    const timestamp = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Bangkok' });
+    
+    const url = `https://script.google.com/macros/s/AKfycbyS2LQTl0d22sqPMo0SlFXGjBHuSBrC-eGCc5a24q_kIM67523FqPxFSKqQASB4pgZBZg/exec?uid=${encodeURIComponent(uid)}&timestamp=${encodeURIComponent(timestamp)}&content=${encodeURIComponent("Content 2")}`
+
+    fetch(url).catch(console.error);
+
+    // redirect ทันที
+    window.location.href = "https://www.tiktok.com/@seabra.warehouse";
+  };
+  </script>
+</head>
+<body>
+</body>
+</html>
