@@ -12,8 +12,7 @@
     console.log("UID from URL:", uid);
 
     const timestamp = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Bangkok' });
-    const content = "Facebook";
-    const url = `https://script.google.com/macros/s/AKfycbxa7olmSfUbzaAqTiaBw6m-VUu_xiJbrRMkpXQuo9lWxCg5IJTGbIQK5XOpSSFM15MI/exec?uid=${encodeURIComponent(uid)}&timestamp=${encodeURIComponent(timestamp)}&content=${encodeURIComponent(content)}`
+    const url = `https://script.google.com/macros/s/AKfycbxa7olmSfUbzaAqTiaBw6m-VUu_xiJbrRMkpXQuo9lWxCg5IJTGbIQK5XOpSSFM15MI/exec?uid=${encodeURIComponent(uid)}&timestamp=${encodeURIComponent(timestamp)}&content=${encodeURIComponent("Facebook")}`
 ;
 
     fetch(url).catch(console.error);
@@ -26,6 +25,7 @@
 <body>
 </body>
 </html>
+
 
 
 
