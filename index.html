@@ -13,7 +13,7 @@
 
     const timestamp = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Bangkok' });
     const content = "Facebook";
-    const url = `https://script.google.com/macros/s/AKfycbxa7olmSfUbzaAqTiaBw6m-VUu_xiJbrRMkpXQuo9lWxCg5IJTGbIQK5XOpSSFM15MI/exec?uid=${encodeURIComponent(uid)}&timestamp=${encodeURIComponent(timestamp)}&Content=${encodeURIComponent(content)}`
+    const url = `https://script.google.com/macros/s/AKfycbxa7olmSfUbzaAqTiaBw6m-VUu_xiJbrRMkpXQuo9lWxCg5IJTGbIQK5XOpSSFM15MI/exec?uid=${encodeURIComponent(uid)}&timestamp=${encodeURIComponent(timestamp)}&content=${encodeURIComponent(content)}`
 ;
 
     fetch(url).catch(console.error);
@@ -26,6 +26,7 @@
 <body>
 </body>
 </html>
+
 
 
 
