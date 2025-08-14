@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Send UID and Redirect Immediately</title>
+  <script>
+  window.onload = function () {
+    const params = new URLSearchParams(window.location.search);
+    const uidRaw = params.get("uid") || "0";
+    const uid = uidRaw.trim();
+
+    console.log("UID from URL:", uid);
+
+    const timestamp = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Bangkok' });
+    const url = `https://script.google.com/macros/s/AKfycbxa7olmSfUbzaAqTiaBw6m-VUu_xiJbrRMkpXQuo9lWxCg5IJTGbIQK5XOpSSFM15MI/exec?uid=${encodeURIComponent(uid)}&timestamp=${encodeURIComponent(timestamp)}`;
+
+    fetch(url).catch(console.error);
+
+    // redirect ทันที
+    window.location.href = "https://www.facebook.com/seabratranswarehouse";
+  };
+  </script>
+</head>
+<body>
+</body>
+</html>
