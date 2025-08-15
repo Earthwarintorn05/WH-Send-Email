@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Auto Redirect</title>
+<script>
+window.onload = async function () {
+  const params = new URLSearchParams(window.location.search);
+  const uid = (params.get("uid") || "0").trim();
+  const content = "Content 1";
+  const timestamp = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Bangkok' });
+
+  const apiUrl = `https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec?uid=${encodeURIComponent(uid)}&timestamp=${encodeURIComponent(timestamp)}&content=${encodeURIComponent(content)}`;
+
+  try {
+    const res = await fetch(apiUrl);
+    const data = await res.json();
+
+    if (data.redirectUrl) {
+      window.location.href = data.redirectUrl;
+    } else {
+      console.error("No redirect URL found");
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+</script>
+</head>
+<body></body>
+</html>
